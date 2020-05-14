@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import com.example.fragmentslearning.PokemonListFragment
 import com.example.pokedex.R
 import com.example.pokedex.controller.BuscaPokemon
 import com.example.pokedex.controller.MudaCor
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         //Começa o app com o primeiro Pokémon da lista
         solicitaPokemon("Número", "1")
+
+        val fragmentManager = supportFragmentManager
+        fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance()).commit()
     }
 
     //Função que seta os listeners de todos os botões

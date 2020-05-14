@@ -6,7 +6,7 @@ import com.example.pokedex.model.Pokemon
 
 class PokemonList {
 
-    private val pokemon1List: List<Pokemon> = listOf(
+    val pokemonList: List<Pokemon> = listOf(
 
         //Lista de Pokémon da primeira geração
 
@@ -266,5 +266,5 @@ class PokemonList {
         Pokemon(R.drawable.p251, "#251", "Celebi", Description.CELEBI.descricao, "Psíquico", "Grama")
     )
 
-    fun getPokemon(index: Int) = pokemon1List[index]
+    fun getPokemon(index: Int) = pokemonList[index]
 }
