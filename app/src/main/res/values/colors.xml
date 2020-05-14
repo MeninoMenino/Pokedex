@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F71000</color>
+    <color name="colorPrimaryDark">#940404</color>
+    <color name="colorAccent">#0853C7</color>
+    <color name="colorBackground">#DAFFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    //Cores dos tipos
+    <color name="normal">#000000</color>
+    <color name="fogo">#FF0000</color>
+    <color name="agua">#049BB3</color>
+    <color name="grama">#2BC714</color>
+    <color name="eletrico">#EEFF00</color>
+    <color name="gelo">#00FFC2</color>
+    <color name="lutador">#B30505</color>
+    <color name="venenoso">#8C08D5</color>
+    <color name="terra">#9EFF5722</color>
+    <color name="voador">#D332FF</color>
+    <color name="psiquico">#FF1BE4</color>
+    <color name="inseto">#8AA512</color>
+    <color name="pedra">#5F5701</color>
+    <color name="fantasma">#3A0266</color>
+    <color name="sombra">#0AFFFFFF</color>
+    <color name="dragao">#020888</color>
+    <color name="metal">#59FFFFFF</color>
+    <color name="fada">#FF8E8E</color>
+</resources>
