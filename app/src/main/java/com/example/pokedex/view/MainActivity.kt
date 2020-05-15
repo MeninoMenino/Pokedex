@@ -1,17 +1,15 @@
 package com.example.pokedex.view
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
-import com.example.fragmentslearning.PokemonListFragment
+import com.example.pokedex.fragment.PokemonListFragment
 import com.example.pokedex.R
 import com.example.pokedex.controller.BuscaPokemon
-import com.example.pokedex.controller.MudaCor
+import com.example.pokedex.fragment.PokemonDialogFragment
 import com.example.pokedex.model.Pokemon
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,9 +18,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Instância da Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        //Instância do Spinner de opções
         val spinnerOpcoes: Spinner = findViewById(R.id.spinnerOpcoes)
         val arrayAdapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
             this,
@@ -34,9 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         setListeners()
 
-        //Começa o app com o primeiro Pokémon da lista
-        solicitaPokemon("Número", "1")
-
+        //Instância do fragmento de lista de Pokémon
         val fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance()).commit()
     }
@@ -46,6 +44,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         buttonBuscar.setOnClickListener(this)
     }
 
+    //Listener
     override fun onClick(view: View) {
         solicitaPokemon(spinnerOpcoes.selectedItem.toString(), editTextBuscar.text.toString())
     }
@@ -75,16 +74,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     //Função que mostra o Pokémon solicitado na tela
     fun mostraPokemon(pokemon: Pokemon) {
-        imagemPokemon.setImageResource(pokemon.imagem)
-        textNumeroPokemon.text = pokemon.numero
-        textNomePokemon.text = pokemon.nome
-        textDescricao.text = pokemon.descricao
-        textTipo1.text = pokemon.tipo1
-        MudaCor().mudarCorTipo(textTipo1, this)
-
-        if (textTipo2.text != null) {
-            textTipo2.text = pokemon.tipo2
-            MudaCor().mudarCorTipo(textTipo2, this)
-        }
+        PokemonDialogFragment(pokemon).show(supportFragmentManager, "")
     }
 }

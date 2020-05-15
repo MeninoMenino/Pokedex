@@ -1,4 +1,4 @@
-package com.example.fragmentslearning.adapter
+package com.example.pokedex.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ class PokemonListAdapter () : RecyclerView.Adapter<PokemonViewHolder>() {
 
     //Cria a linha
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        val inflater = LayoutInflater.from(parent?.context)
+        val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row_pokemon_list, parent, false)
         return PokemonViewHolder(view)
     }

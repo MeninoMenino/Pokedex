@@ -4,14 +4,9 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.pokedex.R
-import com.example.pokedex.model.Pokemon
-import kotlinx.android.synthetic.main.activity_main.*
 
-class MudaCor {
-
-    constructor() {}
+class MudaCor() {
 
     //Muda a cor do texto de acordo com o elemento
     @TargetApi(Build.VERSION_CODES.M) //getColor() precisa da API 21, e a API mínima do app é 15
