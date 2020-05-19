@@ -3,21 +3,21 @@ package com.example.pokedex.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.os.Handler
 import com.example.pokedex.R
-import com.example.pokedex.repository.PokemonList
-import kotlinx.android.synthetic.main.activity_splash.*
 
-class SplashActivity : AppCompatActivity(), View.OnClickListener {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        buttonIniciar.setOnClickListener(this)
+        //Delay pra testar a tela inicial
+        Handler().postDelayed({ iniciaMain() }, 500)
     }
 
-    override fun onClick(view: View) {
+    //Inicia a MainActivity
+    fun iniciaMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

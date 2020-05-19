@@ -5,14 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentManager
 import com.example.pokedex.fragment.PokemonListFragment
 import com.example.pokedex.R
 import com.example.pokedex.controller.BuscaPokemon
-import com.example.pokedex.fragment.PokemonDialogFragment
+import com.example.pokedex.controller.MostraPokemon
 import com.example.pokedex.model.Pokemon
 import kotlinx.android.synthetic.main.toolbar.*
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener{
+
+    lateinit var mFragmentManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +35,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerOpcoes.adapter = arrayAdapter
 
-        setListeners()
-
         //Instância do fragmento de lista de Pokémon
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance()).commit()
+        mFragmentManager = fragmentManager
+        fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance(mFragmentManager)).commit()
+
+        //Seta todos os listeners da activity
+        setListeners()
     }
 
     //Função que seta os listeners de todos os botões
@@ -68,12 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         if (pokemon != null) {
-            mostraPokemon(pokemon)
+            MostraPokemon().mostraPokemon(mFragmentManager, pokemon)
         }
-    }
-
-    //Função que mostra o Pokémon solicitado na tela
-    fun mostraPokemon(pokemon: Pokemon) {
-        PokemonDialogFragment(pokemon).show(supportFragmentManager, "")
     }
 }

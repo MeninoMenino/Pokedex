@@ -2,18 +2,21 @@ package com.example.pokedex.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.repository.PokemonList
 import com.example.pokedex.viewholder.PokemonViewHolder
 
-class PokemonListAdapter () : RecyclerView.Adapter<PokemonViewHolder>() {
+class PokemonListAdapter (fragmentManager : FragmentManager) : RecyclerView.Adapter<PokemonViewHolder>() {
+
+    val mFragmentManager = fragmentManager
 
     //Cria a linha
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.row_pokemon_list, parent, false)
-        return PokemonViewHolder(view)
+        return PokemonViewHolder(view, mFragmentManager)
     }
 
     //Atribui os valores na linha criada

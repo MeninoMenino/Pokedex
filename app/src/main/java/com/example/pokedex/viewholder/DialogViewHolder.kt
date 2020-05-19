@@ -27,7 +27,7 @@ class DialogViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)  {
 
         if (textTipo2.text != null) {
             textTipo2.text = pokemon.tipo2
-            MudaCor().mudarCorTipo(textTipo1, itemView.context)
+            MudaCor().mudarCorTipo(textTipo2, itemView.context)
         }
     }
 }

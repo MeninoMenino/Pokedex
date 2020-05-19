@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
@@ -15,8 +16,9 @@ import com.example.pokedex.adapter.PokemonListAdapter
  * Use the [PokemonListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PokemonListFragment : Fragment() {
+class PokemonListFragment(fragmentManager: FragmentManager) : Fragment() {
 
+    val mFragmentManager = fragmentManager
     lateinit var recyclerPokemonList : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,18 +35,20 @@ class PokemonListFragment : Fragment() {
         recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonListAdapter()
+        recyclerPokemonList.adapter = PokemonListAdapter(mFragmentManager)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)
+
+        recyclerPokemonList.setRecyclerListener {  }
 
         return rootView
     }
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            PokemonListFragment().apply {
+        fun newInstance(fragmentManager: FragmentManager) =
+            PokemonListFragment(fragmentManager).apply {
             }
     }
 }

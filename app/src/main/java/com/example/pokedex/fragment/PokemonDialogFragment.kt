@@ -11,7 +11,7 @@ import com.example.pokedex.R
 import com.example.pokedex.adapter.PokemonDialogAdapter
 import com.example.pokedex.model.Pokemon
 
-class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment() {
+class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment(){
 
     val pokemonSelecionado = pokemon
     lateinit var recyclerPokemonList : RecyclerView

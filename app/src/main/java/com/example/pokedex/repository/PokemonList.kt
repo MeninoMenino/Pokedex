@@ -1,7 +1,6 @@
 package com.example.pokedex.repository
 
 import com.example.pokedex.R
-import com.example.pokedex.model.Description
 import com.example.pokedex.model.Pokemon
 
 class PokemonList {
