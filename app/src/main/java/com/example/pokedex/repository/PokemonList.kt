@@ -54,7 +54,7 @@ class PokemonList {
         Pokemon(R.drawable.p43, "#043", "Oddish", Description.ODDISH.descricao, "Grama", "Venenoso"),
         Pokemon(R.drawable.p44, "#044", "Gloom", Description.GLOOM.descricao, "Grama", "Venenoso"),
         Pokemon(R.drawable.p45, "#045", "Vileplume", Description.VILEPLUME.descricao, "Grama", "Venenoso"),
-        Pokemon(R.drawable.p46, "#046", "Paras", "Inseto", Description.PARAS.descricao, "Grama"),
+        Pokemon(R.drawable.p46, "#046", "Paras", Description.PARAS.descricao, "Inseto", "Grama"),
         Pokemon(R.drawable.p47, "#047", "Parasect", Description.PARASECT.descricao, "Inseto", "Grama"),
         Pokemon(R.drawable.p48, "#048", "Venonat", Description.VENONAT.descricao, "Inseto", "Venenoso"),
         Pokemon(R.drawable.p49, "#049", "Venomoth", Description.VENOMOTH.descricao, "Inseto", "Venenoso"),
