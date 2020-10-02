@@ -1,5 +1,6 @@
 package com.example.pokedex.viewholder
 
+import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,7 +9,9 @@ import com.example.pokedex.R
 import com.example.pokedex.controller.MudaCor
 import com.example.pokedex.model.Pokemon
 
-class DialogViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)  {
+class DialogViewHolder(itemView : View, appContext : Context): RecyclerView.ViewHolder(itemView)  {
+
+    val appContext = appContext
 
     fun bindInfo(pokemon : Pokemon){
         val imagemPokemon = itemView.findViewById<ImageView>(R.id.imagemPokemon)
@@ -17,9 +20,10 @@ class DialogViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)  {
         val textDescricao = itemView.findViewById<TextView>(R.id.textDescricao)
         val textTipo1 = itemView.findViewById<TextView>(R.id.textTipo1)
         val textTipo2 = itemView.findViewById<TextView>(R.id.textTipo2)
+        val uriImagem = "p${pokemon.numero}"
 
-        imagemPokemon.setImageResource(pokemon.imagem)
-        textNumeroPokemon.text = pokemon.numero
+        imagemPokemon.setImageResource(caminhoImagem(appContext, uriImagem))
+        textNumeroPokemon.text = pokemon.numero.toString()
         textNomePokemon.text = pokemon.nome
         textDescricao.text = pokemon.descricao
         textTipo1.text = pokemon.tipo1
@@ -29,5 +33,11 @@ class DialogViewHolder(itemView : View): RecyclerView.ViewHolder(itemView)  {
             textTipo2.text = pokemon.tipo2
             MudaCor().mudarCorTipo(textTipo2, itemView.context)
         }
+    }
+
+    //Retorna um caminho a partir de uma String
+    fun caminhoImagem(context: Context, nomeImagem: String): Int {
+        return context.resources
+            .getIdentifier("drawable/$nomeImagem", null, context.packageName)
     }
 }

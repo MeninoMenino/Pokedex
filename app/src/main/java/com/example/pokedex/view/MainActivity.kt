@@ -8,18 +8,45 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
 import com.example.pokedex.fragment.PokemonListFragment
 import com.example.pokedex.R
+import com.example.pokedex.config.RetrofitConfig
 import com.example.pokedex.controller.BuscaPokemon
 import com.example.pokedex.controller.MostraPokemon
 import com.example.pokedex.model.Pokemon
 import kotlinx.android.synthetic.main.toolbar.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     lateinit var mFragmentManager: FragmentManager
+    lateinit var listaPokemon: List<Pokemon>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val call = RetrofitConfig().getListaPokemonService().listar()
+        call.enqueue(object: Callback<List<Pokemon>?>{
+            override fun onResponse(call: Call<List<Pokemon>?>?,
+                                    response: Response<List<Pokemon>?>?) {
+                response?.body()?.let{
+                    listaPokemon = it
+
+                    //Instância do fragmento de lista de Pokémon
+                    val fragmentManager = supportFragmentManager
+                    mFragmentManager = fragmentManager
+                    fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance(mFragmentManager, listaPokemon, this@MainActivity)).commit()
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<Pokemon>?>?,
+                                   t: Throwable?) {
+                val toast = Toast.makeText(applicationContext, "Sem conexão", Toast.LENGTH_SHORT)
+                toast.show()
+            }
+        })
 
         //Instância da Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -34,11 +61,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         )
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerOpcoes.adapter = arrayAdapter
-
-        //Instância do fragmento de lista de Pokémon
-        val fragmentManager = supportFragmentManager
-        mFragmentManager = fragmentManager
-        fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance(mFragmentManager)).commit()
 
         //Seta todos os listeners da activity
         setListeners()
@@ -62,18 +84,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         if (opcao == "Número") {
             try {
                 pokemon =
-                    BuscaPokemon().buscaNumeroPokemon(pesquisa.toInt(), this)
+                    BuscaPokemon(listaPokemon).buscaNumeroPokemon(pesquisa.toInt(), this)
             } catch (e: NumberFormatException) {
                 Toast.makeText(this, "Insira um número", Toast.LENGTH_SHORT).show()
             }
         }
         //Busca por nome
         else {
-            pokemon = BuscaPokemon().buscaNomePokemon(pesquisa, this)
+            pokemon = BuscaPokemon(listaPokemon).buscaNomePokemon(pesquisa, this)
         }
 
         if (pokemon != null) {
-            MostraPokemon().mostraPokemon(mFragmentManager, pokemon)
+            MostraPokemon().mostraPokemon(mFragmentManager, pokemon, this@MainActivity)
         }
     }
 }

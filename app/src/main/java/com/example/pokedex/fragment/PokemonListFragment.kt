@@ -1,5 +1,6 @@
 package com.example.pokedex.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,16 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.adapter.PokemonListAdapter
+import com.example.pokedex.model.Pokemon
 
 /**
  * A simple [Fragment] subclass.
  * Use the [PokemonListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PokemonListFragment(fragmentManager: FragmentManager) : Fragment() {
+class PokemonListFragment(fragmentManager: FragmentManager, listaPokemon : List<Pokemon>, appContext: Context) : Fragment() {
 
     val mFragmentManager = fragmentManager
     lateinit var recyclerPokemonList : RecyclerView
+    val mListaPokemon = listaPokemon
+
+    val appContext = appContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class PokemonListFragment(fragmentManager: FragmentManager) : Fragment() {
         recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonListAdapter(mFragmentManager)
+        recyclerPokemonList.adapter = PokemonListAdapter(mFragmentManager, mListaPokemon, appContext)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)
@@ -47,8 +52,8 @@ class PokemonListFragment(fragmentManager: FragmentManager) : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(fragmentManager: FragmentManager) =
-            PokemonListFragment(fragmentManager).apply {
+        fun newInstance(fragmentManager: FragmentManager, listaPokemon: List<Pokemon>, appContext: Context) =
+            PokemonListFragment(fragmentManager, listaPokemon, appContext).apply {
             }
     }
 }

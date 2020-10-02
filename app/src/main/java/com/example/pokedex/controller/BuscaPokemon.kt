@@ -3,12 +3,12 @@ package com.example.pokedex.controller
 import android.content.Context
 import android.widget.Toast
 import com.example.pokedex.model.Pokemon
-import com.example.pokedex.repository.PokemonList
 
-class BuscaPokemon {
+class BuscaPokemon (lista : List<Pokemon>){
 
     //Quantidade de Pokémon na lista
-    val limite = PokemonList().pokemonList.size
+    val listaPokemon = lista
+    val limite = listaPokemon.size
 
     //Busca o Pokémon por número dentro da lista. Se encontrar, retorna o Pokémon. Senão, retorna nulo e mostra Toast
     fun buscaNumeroPokemon(numero: Int, contexto: Context): Pokemon? {
@@ -16,7 +16,7 @@ class BuscaPokemon {
         val index = numero - 1
 
         if (index in 0..limite) {
-            return PokemonList().getPokemon(index)
+            return listaPokemon.get(index)
         } else {
             Toast.makeText(contexto, "Número inválido", Toast.LENGTH_SHORT).show()
             return null
@@ -28,10 +28,10 @@ class BuscaPokemon {
         var index = 0
         lateinit var pokemonEscolhido: Pokemon
         while (index < limite) {
-            if (nome.trim().toUpperCase() == PokemonList().getPokemon(index).nome.trim()
+            if (nome.trim().toUpperCase() == listaPokemon.get(index).nome.trim()
                     .toUpperCase()
             ) {
-                pokemonEscolhido = PokemonList().getPokemon(index)
+                pokemonEscolhido = listaPokemon.get(index)
                 break
             } else {
                 index++
