@@ -1,4 +1,4 @@
-package com.example.pokedex.repository
+package com.example.pokedex.model
 
 enum class Description(val descricao: String) {
 
