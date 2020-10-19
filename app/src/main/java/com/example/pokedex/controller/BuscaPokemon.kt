@@ -2,7 +2,7 @@ package com.example.pokedex.controller
 
 import android.content.Context
 import android.widget.Toast
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.data.model.Pokemon
 
 class BuscaPokemon (lista : List<Pokemon>){
 

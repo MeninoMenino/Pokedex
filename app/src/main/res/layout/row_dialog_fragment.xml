@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragment.PokemonDialogFragment">
+    tools:context=".presentation.fragment.PokemonDialogFragment">
 
     <ImageView
         android:id="@+id/imagemPokemon"

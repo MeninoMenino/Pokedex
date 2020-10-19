@@ -1,4 +1,4 @@
-package com.example.pokedex.adapter
+package com.example.pokedex.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
 import com.example.pokedex.controller.MostraPokemon
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.data.model.Pokemon
 import kotlinx.android.synthetic.main.row_pokemon_list.view.*
 
 class PokemonListAdapter (private val listaPokemon : List<Pokemon>,

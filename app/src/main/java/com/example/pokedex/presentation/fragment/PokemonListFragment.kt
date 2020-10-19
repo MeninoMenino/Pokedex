@@ -1,4 +1,4 @@
-package com.example.pokedex.fragment
+package com.example.pokedex.presentation.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.adapter.PokemonListAdapter
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.presentation.adapter.PokemonListAdapter
+import com.example.pokedex.data.model.Pokemon
 
 /**
  * A simple [Fragment] subclass.

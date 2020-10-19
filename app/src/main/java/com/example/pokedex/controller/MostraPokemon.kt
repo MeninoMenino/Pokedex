@@ -2,8 +2,8 @@ package com.example.pokedex.controller
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager
-import com.example.pokedex.fragment.PokemonDialogFragment
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.presentation.fragment.PokemonDialogFragment
+import com.example.pokedex.data.model.Pokemon
 
 class MostraPokemon{
 
