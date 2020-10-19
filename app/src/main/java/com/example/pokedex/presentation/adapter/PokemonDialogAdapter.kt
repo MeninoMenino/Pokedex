@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.controller.MudaCor
+import com.example.pokedex.presentation.util.MudaCor
 import com.example.pokedex.data.model.Pokemon
 import kotlinx.android.synthetic.main.row_dialog_fragment.view.*
 
