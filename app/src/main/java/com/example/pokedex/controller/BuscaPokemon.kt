@@ -24,7 +24,7 @@ class BuscaPokemon (lista : List<Pokemon>){
     }
 
     //Busca o Pokémon por nome dentro da lista. Se encontrar, retorna o Pokémon. Senão, retorna nulo e mostra Toast
-    fun buscaNomePokemon(nome: String, contexto: Context): Pokemon? {
+    fun buscaNomePokemon(nome: String, context: Context): Pokemon? {
         var index = 0
         lateinit var pokemonEscolhido: Pokemon
         while (index < limite) {
@@ -39,7 +39,7 @@ class BuscaPokemon (lista : List<Pokemon>){
         }
 
         if (index >= limite) {
-            Toast.makeText(contexto, "Pokémon não encontrado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Pokémon não encontrado", Toast.LENGTH_SHORT).show()
             return null
         } else {
             return pokemonEscolhido

@@ -40,7 +40,7 @@ class PokemonListFragment(fragmentManager: FragmentManager, listaPokemon : List<
         recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonListAdapter(mFragmentManager, mListaPokemon, appContext)
+        recyclerPokemonList.adapter = PokemonListAdapter(mListaPokemon, mFragmentManager)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)

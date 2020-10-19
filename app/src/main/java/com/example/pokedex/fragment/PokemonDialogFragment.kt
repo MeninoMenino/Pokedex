@@ -29,7 +29,7 @@ class PokemonDialogFragment(pokemon: Pokemon, appContext : Context) : DialogFrag
         recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonDialogAdapter(pokemonSelecionado, appContext)
+        recyclerPokemonList.adapter = PokemonDialogAdapter(pokemonSelecionado)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)
