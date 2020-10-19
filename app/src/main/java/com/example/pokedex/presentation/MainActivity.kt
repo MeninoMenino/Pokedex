@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.pokedex.presentation.fragment.PokemonListFragment
 import com.example.pokedex.R
@@ -14,7 +12,6 @@ import com.example.pokedex.config.RetrofitConfig
 import com.example.pokedex.controller.BuscaPokemon
 import com.example.pokedex.controller.MostraPokemon
 import com.example.pokedex.data.model.Pokemon
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Call
 import retrofit2.Callback
