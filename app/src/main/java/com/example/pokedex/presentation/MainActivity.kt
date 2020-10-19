@@ -6,12 +6,15 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.pokedex.presentation.fragment.PokemonListFragment
 import com.example.pokedex.R
 import com.example.pokedex.config.RetrofitConfig
 import com.example.pokedex.controller.BuscaPokemon
 import com.example.pokedex.controller.MostraPokemon
 import com.example.pokedex.data.model.Pokemon
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,6 +29,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Toolbar
+        setSupportActionBar(mainToolbar)
+
+        //ViewModel
+        val viewModel : PokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
+
+
+        //TODO: Passar função de busca para ViewModel
         val call = RetrofitConfig().getListaPokemonService().listar()
         call.enqueue(object: Callback<List<Pokemon>?>{
             override fun onResponse(call: Call<List<Pokemon>?>?,
@@ -47,10 +58,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
                 toast.show()
             }
         })
-
-        //Instância da Toolbar
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         //Instância do Spinner de opções
         val spinnerOpcoes: Spinner = findViewById(R.id.spinnerOpcoes)
