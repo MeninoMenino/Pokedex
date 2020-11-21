@@ -1,6 +1,5 @@
-package com.example.pokedex.fragment
+package com.example.pokedex.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +8,13 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.adapter.PokemonDialogAdapter
-import com.example.pokedex.model.Pokemon
+import com.example.pokedex.presentation.adapter.PokemonDialogAdapter
+import com.example.pokedex.data.model.Pokemon
 
-class PokemonDialogFragment(pokemon: Pokemon, appContext : Context) : DialogFragment(){
+class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment(){
 
     val pokemonSelecionado = pokemon
     lateinit var recyclerPokemonList : RecyclerView
-    val appContext = appContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +27,7 @@ class PokemonDialogFragment(pokemon: Pokemon, appContext : Context) : DialogFrag
         recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonDialogAdapter(pokemonSelecionado, appContext)
+        recyclerPokemonList.adapter = PokemonDialogAdapter(pokemonSelecionado)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)

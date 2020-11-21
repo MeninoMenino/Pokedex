@@ -1,17 +1,17 @@
-package com.example.pokedex.config
+package com.example.pokedex.data.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.pokedex.service.ListaPokemonService as ListaPokemonService
+import com.example.pokedex.data.service.ListaPokemonService as ListaPokemonService
 
-class RetrofitConfig {
+object ApiService {
 
-    val retrofit = Retrofit.Builder()
+    private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://pokedex-restapi.herokuapp.com/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun getListaPokemonService() : ListaPokemonService {
+    fun getListaPokemon() : ListaPokemonService {
         return retrofit.create(ListaPokemonService::class.java)
     }
 }
