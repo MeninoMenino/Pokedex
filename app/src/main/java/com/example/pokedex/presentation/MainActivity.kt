@@ -5,17 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.pokedex.presentation.fragment.PokemonListFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.config.RetrofitConfig
 import com.example.pokedex.controller.BuscaPokemon
 import com.example.pokedex.controller.MostraPokemon
 import com.example.pokedex.data.model.Pokemon
+import com.example.pokedex.presentation.adapter.PokemonListAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
@@ -32,29 +32,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         //ViewModel
         val viewModel : PokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
 
+        viewModel.pokemonLiveData.observe(this, Observer {
+            it?.let {pokemonList ->
+                with(recyclerPokemonList){
+                    mFragmentManager = supportFragmentManager
 
-        //TODO: Passar função de busca para ViewModel
-        val call = RetrofitConfig().getListaPokemonService().listar()
-        call.enqueue(object: Callback<List<Pokemon>?>{
-            override fun onResponse(call: Call<List<Pokemon>?>?,
-                                    response: Response<List<Pokemon>?>?) {
-                response?.body()?.let{
-                    listaPokemon = it
-
-                    //Instância do fragmento de lista de Pokémon
-                    val fragmentManager = supportFragmentManager
-                    mFragmentManager = fragmentManager
-                    fragmentManager.beginTransaction().replace(R.id.frameLayoutFragment, PokemonListFragment.newInstance(mFragmentManager, listaPokemon, this@MainActivity)).commit()
-
+                    layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
+                    setHasFixedSize(true)
+                    adapter = PokemonListAdapter(pokemonList, mFragmentManager)
                 }
             }
-
-            override fun onFailure(call: Call<List<Pokemon>?>?,
-                                   t: Throwable?) {
-                val toast = Toast.makeText(applicationContext, "Sem conexão", Toast.LENGTH_SHORT)
-                toast.show()
-            }
         })
+        viewModel.getPokemon()
+
 
         //Instância do Spinner de opções
         val spinnerOpcoes: Spinner = findViewById(R.id.spinnerOpcoes)
