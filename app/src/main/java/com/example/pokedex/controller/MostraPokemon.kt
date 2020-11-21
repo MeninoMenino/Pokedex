@@ -7,7 +7,7 @@ import com.example.pokedex.data.model.Pokemon
 
 class MostraPokemon{
 
-    fun mostraPokemon(fragmentManager : FragmentManager, pokemon : Pokemon, appContext : Context) {
-        PokemonDialogFragment(pokemon, appContext).show(fragmentManager, "")
+    fun mostraPokemon(fragmentManager : FragmentManager, pokemon : Pokemon) {
+        PokemonDialogFragment(pokemon).show(fragmentManager, "")
     }
 }

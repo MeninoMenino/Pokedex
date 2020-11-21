@@ -1,6 +1,5 @@
 package com.example.pokedex.presentation.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,10 @@ import com.example.pokedex.R
 import com.example.pokedex.presentation.adapter.PokemonDialogAdapter
 import com.example.pokedex.data.model.Pokemon
 
-class PokemonDialogFragment(pokemon: Pokemon, appContext : Context) : DialogFragment(){
+class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment(){
 
     val pokemonSelecionado = pokemon
     lateinit var recyclerPokemonList : RecyclerView
-    val appContext = appContext
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

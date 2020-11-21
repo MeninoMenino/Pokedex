@@ -19,9 +19,8 @@ class PokemonViewModel : ViewModel(){
             }
 
             override fun onFailure(call: Call<List<Pokemon>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
 
+            }
         })
     }
 
