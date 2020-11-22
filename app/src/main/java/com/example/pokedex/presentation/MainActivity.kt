@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.*
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
@@ -16,9 +15,11 @@ import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.presentation.adapter.PokemonListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
+    private val viewModel: PokemonViewModel by viewModel()
     lateinit var mFragmentManager: FragmentManager
     lateinit var pokemonList: List<Pokemon>
 
@@ -28,9 +29,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
         //Toolbar
         setSupportActionBar(mainToolbar)
-
-        //ViewModel
-        val viewModel : PokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
 
         viewModel.pokemonLiveData.observe(this, Observer {
             it?.let {pokemonList ->

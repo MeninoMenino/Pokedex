@@ -8,12 +8,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PokemonViewModel : ViewModel(){
+class PokemonViewModel(private val apiService: ApiService) : ViewModel(){
 
     val pokemonLiveData : MutableLiveData<List<Pokemon>> = MutableLiveData()
 
     fun getPokemon(){
-        ApiService.getPokemonList().list().enqueue(object : Callback<List<Pokemon>>{
+        apiService.getPokemonList().list().enqueue(object : Callback<List<Pokemon>>{
             override fun onResponse(call: Call<List<Pokemon>>, response: Response<List<Pokemon>>) {
                 pokemonLiveData.value = response.body()
             }
