@@ -20,7 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     private val viewModel: PokemonViewModel by viewModel()
-    lateinit var mFragmentManager: FragmentManager
+    private lateinit var mFragmentManager: FragmentManager
     lateinit var pokemonList: List<Pokemon>
 
     override fun onCreate(savedInstanceState: Bundle?) {
