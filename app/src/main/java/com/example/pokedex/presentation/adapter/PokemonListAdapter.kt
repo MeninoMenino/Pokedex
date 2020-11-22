@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.controller.MostraPokemon
+import com.example.pokedex.presentation.util.MostraPokemon
 import com.example.pokedex.data.model.Pokemon
 import kotlinx.android.synthetic.main.row_pokemon_list.view.*
 
@@ -43,7 +43,7 @@ class PokemonListAdapter (private val listaPokemon : List<Pokemon>,
         lateinit var mPokemon : Pokemon
 
         fun bindView(pokemon : Pokemon){
-            var uriImagem = "p${pokemon.numero}"
+            val uriImagem = "p${pokemon.numero}"
             imagem.setImageResource(caminhoImagem(context, uriImagem))
 
             numero.text = pokemon.numero.toString()
@@ -61,7 +61,7 @@ class PokemonListAdapter (private val listaPokemon : List<Pokemon>,
         }
 
         override fun onClick(v: View?) {
-            MostraPokemon().mostraPokemon(fragmentManager, mPokemon, context)
+            MostraPokemon().mostraPokemon(fragmentManager, mPokemon)
         }
     }
 }

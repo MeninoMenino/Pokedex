@@ -1,4 +1,4 @@
-package com.example.pokedex.controller
+package com.example.pokedex.presentation.util
 
 import android.content.Context
 import androidx.fragment.app.FragmentManager

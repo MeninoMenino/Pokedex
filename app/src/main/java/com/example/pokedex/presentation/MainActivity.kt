@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.controller.BuscaPokemon
-import com.example.pokedex.controller.MostraPokemon
+import com.example.pokedex.presentation.util.BuscaPokemon
+import com.example.pokedex.presentation.util.MostraPokemon
 import com.example.pokedex.data.model.Pokemon
 import com.example.pokedex.presentation.adapter.PokemonListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         }
 
         if (pokemon != null) {
-            MostraPokemon().mostraPokemon(mFragmentManager, pokemon, this@MainActivity)
+            MostraPokemon().mostraPokemon(mFragmentManager, pokemon)
         }
     }
 }
