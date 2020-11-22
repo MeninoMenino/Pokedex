@@ -13,7 +13,7 @@ import com.example.pokedex.data.model.Pokemon
 
 class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment(){
 
-    val pokemonSelecionado = pokemon
+    val selectedPokemon = pokemon
     lateinit var recyclerPokemonList : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +24,10 @@ class PokemonDialogFragment(pokemon: Pokemon) : DialogFragment(){
         val rootView = inflater.inflate(R.layout.fragment_pokemon_dialog, container, false)
 
         // 1 - Obter o elemento
-        recyclerPokemonList = rootView.findViewById<RecyclerView>(R.id.recyclerPokemonList)
+        recyclerPokemonList = rootView.findViewById(R.id.recyclerPokemonList)
 
         // 2 - Definir um adapter com os itens de listagem
-        recyclerPokemonList.adapter = PokemonDialogAdapter(pokemonSelecionado)
+        recyclerPokemonList.adapter = PokemonDialogAdapter(selectedPokemon)
 
         // 3 - Definir o Layout
         recyclerPokemonList.layoutManager = LinearLayoutManager(rootView.context)

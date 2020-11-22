@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Pokédex</string>
 
     <string name="title_activity_splash">Pokédex</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     //Itens do spinner de opções
-    <string-array name="opcoesBusca">
+    <string-array name="searchOptions">
         <item>Número</item>
         <item>Nome</item>
     </string-array>

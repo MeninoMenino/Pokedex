@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.presentation.util.MostraPokemon
+import com.example.pokedex.presentation.util.ShowPokemon
 import com.example.pokedex.data.model.Pokemon
 import kotlinx.android.synthetic.main.row_pokemon_list.view.*
 
-class PokemonListAdapter (private val listaPokemon : List<Pokemon>,
-                          private val fragmentManager: FragmentManager) : RecyclerView.Adapter<PokemonListAdapter.PokemonListViewHolder>() {
+class PokemonListAdapter (
+    internal val pokemonList: List<Pokemon>,
+    private val fragmentManager: FragmentManager) : RecyclerView.Adapter<PokemonListAdapter.PokemonListViewHolder>() {
 
     lateinit var context: Context
 
@@ -26,28 +27,28 @@ class PokemonListAdapter (private val listaPokemon : List<Pokemon>,
 
     //Atribui os valores na linha criada
     override fun onBindViewHolder(holder: PokemonListViewHolder, position: Int) {
-        holder.bindView(listaPokemon[position])
+        holder.bindView(pokemonList[position])
     }
 
     //Retorna quantos itens tem na lista
-    override fun getItemCount(): Int = listaPokemon.count()
+    override fun getItemCount(): Int = pokemonList.count()
 
     class PokemonListViewHolder(itemView : View,
                                 private val context: Context,
                                 private val fragmentManager: FragmentManager) : RecyclerView.ViewHolder(itemView),
                                                     View.OnClickListener{
 
-        val imagem = itemView.imagemPokemon
-        val numero = itemView.textNumero
-        val nome = itemView.textNome
+        val image = itemView.pokemonImage
+        val number = itemView.textNumber
+        val name = itemView.textName
         lateinit var mPokemon : Pokemon
 
         fun bindView(pokemon : Pokemon){
-            val uriImagem = "p${pokemon.numero}"
-            imagem.setImageResource(caminhoImagem(context, uriImagem))
+            val imagePath = "p${pokemon.number}"
+            image.setImageResource(setImagePath(context, imagePath))
 
-            numero.text = pokemon.numero.toString()
-            nome.text = pokemon.nome
+            number.text = pokemon.number.toString()
+            name.text = pokemon.name
 
             mPokemon = pokemon
 
@@ -55,13 +56,13 @@ class PokemonListAdapter (private val listaPokemon : List<Pokemon>,
         }
 
         //Retorna um caminho a partir de uma String
-        fun caminhoImagem(context: Context, nomeImagem: String): Int {
+        fun setImagePath(context: Context, imageName: String): Int {
             return context.resources
-                .getIdentifier("drawable/$nomeImagem", null, context.packageName)
+                .getIdentifier("drawable/$imageName", null, context.packageName)
         }
 
         override fun onClick(v: View?) {
-            MostraPokemon().mostraPokemon(fragmentManager, mPokemon)
+            ShowPokemon().showPokemon(fragmentManager, mPokemon)
         }
     }
 }

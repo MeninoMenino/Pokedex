@@ -13,11 +13,11 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         //Delay pra testar a tela inicial
-        Handler().postDelayed({ iniciaMain() }, 500)
+        Handler().postDelayed({ callMainActivity() }, 500)
     }
 
     //Inicia a MainActivity
-    fun iniciaMain() {
+    fun callMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

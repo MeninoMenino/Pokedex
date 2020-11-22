@@ -2,7 +2,6 @@ package com.example.pokedex.data.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.pokedex.data.service.ListaPokemonService as ListaPokemonService
 
 object ApiService {
 
@@ -11,7 +10,7 @@ object ApiService {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun getListaPokemon() : ListaPokemonService {
-        return retrofit.create(ListaPokemonService::class.java)
+    fun getPokemonList() : PokedexService {
+        return retrofit.create(PokedexService::class.java)
     }
 }

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokedex.R
-import com.example.pokedex.presentation.util.MudaCor
+import com.example.pokedex.presentation.util.ChangeColor
 import com.example.pokedex.data.model.Pokemon
 import kotlinx.android.synthetic.main.row_dialog_fragment.view.*
 
@@ -30,31 +30,31 @@ class PokemonDialogAdapter(private val pokemon: Pokemon) : RecyclerView.Adapter<
     class PokemonDialogViewHolder(private val view : View,
                                   private val context : Context) : RecyclerView.ViewHolder(view){
         fun bindView(pokemon : Pokemon){
-            val imagemPokemon = view.imagemPokemon
-            val textNumeroPokemon = view.textNumeroPokemon
-            val textNomePokemon = view.textNomePokemon
-            val textDescricao = view.textDescricao
-            val textTipo1 = view.textTipo1
-            val textTipo2 = view.textTipo2
-            val uriImagem = "p${pokemon.numero}"
+            val pokemonImage = view.pokemonImage
+            val textPokemonNumber = view.textPokemonNumber
+            val textPokemonName = view.textPokemonName
+            val textDescription = view.textDescription
+            val textType1 = view.textType1
+            val textType2 = view.textType2
+            val imagePath = "p${pokemon.number}"
 
-            imagemPokemon.setImageResource(caminhoImagem(context, uriImagem))
-            textNumeroPokemon.text = pokemon.numero.toString()
-            textNomePokemon.text = pokemon.nome
-            textDescricao.text = pokemon.descricao
-            textTipo1.text = pokemon.tipo1
-            MudaCor().mudarCorTipo(textTipo1, context)
+            pokemonImage.setImageResource(setImagePath(context, imagePath))
+            textPokemonNumber.text = pokemon.number.toString()
+            textPokemonName.text = pokemon.name
+            textDescription.text = pokemon.description
+            textType1.text = pokemon.type1
+            ChangeColor().changeTypeColor(textType1, context)
 
-            if (textTipo2.text != null) {
-                textTipo2.text = pokemon.tipo2
-                MudaCor().mudarCorTipo(textTipo2, view.context)
+            if (textType2.text != null) {
+                textType2.text = pokemon.type2
+                ChangeColor().changeTypeColor(textType2, view.context)
             }
         }
 
         //Retorna um caminho a partir de uma String
-        fun caminhoImagem(context: Context, nomeImagem: String): Int {
+        fun setImagePath(context: Context, imageName: String): Int {
             return context.resources
-                .getIdentifier("drawable/$nomeImagem", null, context.packageName)
+                .getIdentifier("drawable/$imageName", null, context.packageName)
         }
     }
 }

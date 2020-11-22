@@ -7,7 +7,7 @@
     android:background="@drawable/pokemon_row_style">
 
     <ImageView
-        android:id="@+id/imagemPokemon"
+        android:id="@+id/pokemonImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="15dp"
@@ -18,24 +18,24 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/textNumero"
+        android:id="@+id/textNumber"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Número"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/imagemPokemon"
-        app:layout_constraintRight_toLeftOf="@id/textNome"
+        app:layout_constraintLeft_toRightOf="@id/pokemonImage"
+        app:layout_constraintRight_toLeftOf="@id/textName"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/textNome"
+        android:id="@+id/textName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Nome"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/textNumero"
+        app:layout_constraintLeft_toRightOf="@id/textNumber"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
