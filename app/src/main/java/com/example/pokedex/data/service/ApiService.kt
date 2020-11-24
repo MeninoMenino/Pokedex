@@ -1,5 +1,9 @@
 package com.example.pokedex.data.service
 
+import com.example.pokedex.data.model.Pokemon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -10,7 +14,9 @@ class ApiService {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun getPokemonList() : PokedexService {
+    fun getPokedexService(): PokedexService {
         return retrofit.create(PokedexService::class.java)
     }
+
+    suspend fun getPokemonList(): List<Pokemon> = getPokedexService().list()
 }

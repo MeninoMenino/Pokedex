@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
 
     private val viewModel: PokemonViewModel by viewModel()
     private lateinit var mFragmentManager: FragmentManager
-    lateinit var pokemonList: List<Pokemon>
+    private lateinit var pokemonList: List<Pokemon>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
                 }
             }
         })
-        viewModel.getPokemon()
+        viewModel.getPokemonCoroutines()
 
 
         //Instância do Spinner de opções
