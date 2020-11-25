@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), View.OnClickListener{
 
-    private val viewModel: PokemonViewModel by viewModel()
+    private val viewModel: PokemonViewModel by viewModel<PokemonViewModel>()
     private lateinit var mFragmentManager: FragmentManager
     private lateinit var pokemonList: List<Pokemon>
 

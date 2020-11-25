@@ -12,7 +12,7 @@ class AppDI : Application(){
         startKoin {
             androidContext(this@AppDI)
 
-            modules(mainModule)
+            modules(listOf(mainModule, viewModelModule))
         }
     }
 
