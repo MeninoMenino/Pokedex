@@ -17,9 +17,9 @@ class PokemonViewModel() : ViewModel(), KoinComponent {
     val pokemonLiveData: MutableLiveData<List<Pokemon>> = MutableLiveData()
 
     fun getPokemonCoroutines() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(context = Dispatchers.IO) {
             val pokemonList = pokedexRepository.getPokemonList()
-            withContext(Dispatchers.Main) {
+            withContext(context = Dispatchers.Main) {
                 pokemonLiveData.value = pokemonList
             }
         }
