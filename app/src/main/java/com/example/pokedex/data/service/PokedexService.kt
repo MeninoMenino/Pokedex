@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 interface PokedexService {
 
-    @GET("pokemon")
+    @GET("pokemonList")
     suspend fun list() : List<Pokemon>
 
 }
